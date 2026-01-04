@@ -162,8 +162,8 @@ func TestCache_ConcurrentAccess(t *testing.T) {
 	wg.Wait()
 }
 
-func TestBytesCache_SetAndGet(t *testing.T) {
-	c := NewBytesCache(WithSyncInterval(10 * time.Millisecond))
+func TestCacheByte_SetAndGet(t *testing.T) {
+	c := NewCacheByte(WithSyncInterval(10 * time.Millisecond))
 	defer c.Close()
 
 	data := []byte(`{"user":"test"}`)
@@ -179,8 +179,8 @@ func TestBytesCache_SetAndGet(t *testing.T) {
 	}
 }
 
-func TestBytesCache_GetOrSet(t *testing.T) {
-	c := NewBytesCache(WithSyncInterval(10 * time.Millisecond))
+func TestCacheByte_GetOrSet(t *testing.T) {
+	c := NewCacheByte(WithSyncInterval(10 * time.Millisecond))
 	defer c.Close()
 
 	callCount := 0
@@ -356,8 +356,8 @@ func BenchmarkMapAny_Get_Parallel(b *testing.B) {
 	})
 }
 
-func BenchmarkBytesCache_Get(b *testing.B) {
-	c := NewBytesCache(WithSyncInterval(1 * time.Minute))
+func BenchmarkCacheByte_Get(b *testing.B) {
+	c := NewCacheByte(WithSyncInterval(1 * time.Minute))
 	defer c.Close()
 
 	data := []byte(`{"id":123,"name":"test","email":"test@example.com","active":true}`)
@@ -376,8 +376,8 @@ func BenchmarkBytesCache_Get(b *testing.B) {
 	}
 }
 
-func BenchmarkBytesCache_Get_Parallel(b *testing.B) {
-	c := NewBytesCache(WithSyncInterval(1 * time.Minute))
+func BenchmarkCacheByte_Get_Parallel(b *testing.B) {
+	c := NewCacheByte(WithSyncInterval(1 * time.Minute))
 	defer c.Close()
 
 	data := []byte(`{"id":123,"name":"test","email":"test@example.com","active":true}`)
