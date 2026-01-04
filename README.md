@@ -192,26 +192,26 @@ Periodic background sync:
 ### Benchmark Results
 
 ```
-goos: linux
+goos: windows
 goarch: amd64
 pkg: github.com/masbur/atomicache
 cpu: 12th Gen Intel(R) Core(TM) i5-12600K
-BenchmarkCache_Get-16                    24257065          48.25 ns/op           0 B/op          0 allocs/op
-BenchmarkCache_Get_Parallel-16          276185654          4.329 ns/op           0 B/op          0 allocs/op
-BenchmarkCache_Set-16                    17284814          66.70 ns/op          24 B/op          1 allocs/op
-BenchmarkCache_Set_Parallel-16            4621704          264.7 ns/op          51 B/op          2 allocs/op
-BenchmarkCache_MixedReadWrite-16         21921151          54.14 ns/op          16 B/op          1 allocs/op
-BenchmarkMapAny_Get-16                   79652491          14.53 ns/op           0 B/op          0 allocs/op
-BenchmarkMapAny_Get_Parallel-16          44235235          27.15 ns/op           0 B/op          0 allocs/op
-BenchmarkBytesCache_Get-16               24803900          46.93 ns/op           0 B/op          0 allocs/op
-BenchmarkBytesCache_Get_Parallel-16     270160477          4.287 ns/op           0 B/op          0 allocs/op
+BenchmarkCache_Get-16                   100000000               10.050 ns/op           0 B/op          0 allocs/op
+BenchmarkCache_Get_Parallel-16          884788712                1.353 ns/op           0 B/op          0 allocs/op
+BenchmarkCache_Set-16                    31526016               37.640 ns/op          24 B/op          1 allocs/op
+BenchmarkCache_Set_Parallel-16            6030762              202.500 ns/op          50 B/op          2 allocs/op
+BenchmarkCache_MixedReadWrite-16         25118422               43.740 ns/op          16 B/op          1 allocs/op
+BenchmarkMapAny_Get-16                   82365537               14.070 ns/op           0 B/op          0 allocs/op
+BenchmarkMapAny_Get_Parallel-16          39540928               30.440 ns/op           0 B/op          0 allocs/op
+BenchmarkCacheByte_Get-16               100000000               10.290 ns/op           0 B/op          0 allocs/op
+BenchmarkCacheByte_Get_Parallel-16      905939337                1.351 ns/op           0 B/op          0 allocs/op
 ```
 
 Key metrics:
 
-- **Read latency**: ~48ns single-threaded, ~4ns parallel
+- **Read latency**: ~10ns single-threaded, ~1ns parallel
 - **Zero allocations** on read path
-- **~5x faster** than RWMutex map in parallel reads
+- **~10x faster** than RWMutex map in parallel reads
 
 Run benchmarks yourself:
 
